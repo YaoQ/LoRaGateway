@@ -1,10 +1,15 @@
+# Low-cost LoRa Module
 ## Introduction
-#![](picture/lora.png)
-This page describes our low-cost LoRa gateway based on a Arduino. The gateway can receive from any LoRa device and is designed to be fully customizable for a targeted application.
-The work presented here is part of the EU H2020 WAZIUP project (grant agreement number 687607, 2016-2019) which objective is to develop low-cost IoT solutions for deployment in sub-saharian African countries. Various applications are considered: water quality monitoring, cattle rustling, logistics and goods transportation
-There are many advanced and well-integrated LoRa gateways capable of simultaneous reception on several channels and implementing the LoRaWAN specification (see slides). These gateways are based on the SX1301 baseband concentrator. Our LoRa gateway could be qualified as "single connection" as it uses the SX1272, much like an end-device would do. However, in order to increase LoRa transmission robutsness we improve the LoRa transmission with CSMA features (or so-called Listen Before Talk) and add Quality of Service guarantees with regards to radio time limitations. This solution keeps the cost of the gateway low and can satisfy small to medium size deployment scenario for ad-hoc application cases in various private usages, farming, agriculture, infrastructure surveillance, application-specific telemetry systems,... Note that more than 1 gateway can be deployed to serve several channel settings. However, it is probably not adapted, in the current state of development, to large-scale deployment with a large number of end customers from various different organizations with their own and different requirements regarding data management, confidentiality and security.
+
+![](picture/lora.png)
+
+This is low-cost LoRa gateway module which is powered by RFM96-low power long range transceiver module. The gateway can receive from any LoRa device and is designed to be fully customizable for a targeted application.Various applications are considered: water quality monitoring, cattle rustling, logistics and goods transportation.
+
+This LoRa gateway could be qualified as "single connection" as it uses the SX1272, much like an end-device would do. However, in order to increase LoRa transmission robustness we improve the LoRa transmission with CSMA features (or so-called Listen Before Talk) and add Quality of Service guarantees with regards to radio time limitations. 
+
 ## Features
-* LoRaTM Modem.
+
+* LoRa Modem.
 * 168 dB maximum link budget.
 * +20 dBm - 100 mW constant RF output vs. V supply.
 * +14 dBm high efficiency PA.
@@ -21,43 +26,59 @@ There are many advanced and well-integrated LoRa gateways capable of simultaneou
 * Automatic RF Sense and CAD with ultra-fast AFC.
 * Packet engine up to 256 bytes with CRC.
 * Built-in temperature sensor and low battery indicator.
+
 ## Tutorials
-#### Prerequisites
-##### Hardware
+
+### Prerequisites
+
+**Hardware**
+
 * Arduino UNO x 2
-* Linker Lora Radio x 2 
+* Linker LoRa Radio x 2 
 * Linker Base Shield x 2
 * 4 Pin DuPont line x 4
-##### Software
-Click [here]() to download the code 
-Code folder under LowCostLoRaGw, SX1272 into the directory of the Arduino IDE folder libraries directory.
-#### Hardware connections
-#![](picture/hardware.png)  
-##### Arduino-LoRa-Gateway 
-* Open Arduino IDE
-* Open File
-* Select Examples
-* Select SX1272
-* Select Arduino_LoRa_Gateway
-* Upload code to device
-#![](picture/gatewaycode.png)  
-* Open the Arduino IDE Serial Monitor
-* Select the right baudrate 
-#![](picture/gatetest.png)
 
-#### Arduino_LoRa_temp
+**Software**
+
+* Click [here](https://github.com/YaoQ/LoRaGateway) to download the Arduino project.
+* Put the files in **src** folder which contains SX1272 libraries and examples into the directory of the Arduino IDE's libraries.
+
+### Hardware assemble
+
+* According to the following picture, connect LoRa module and Arduino Uno
+**Note**: One is used to be LoRa gateway, and other one is used to be LoRa end device, they take same connections.
+![](picture/hardware.png)
+
+
+### LoRa Gateway 
 * Open Arduino IDE
-* Open File
-* Select Examples
-* Select SX1272
-* Select Arduino_LoRa_temp
-* Upload code to device
-#![](picture/loratemp.png)
+* **Open File --> Examples --> SX1272 --> Arduino_LoRa_Gateway**
+* Upload code to Arduino Uno
+**Note**: Please select the right serial port and board type.
+
+![](picture/gatewaycode.png)
+
 * Open the Arduino IDE Serial Monitor
-* Select the right baudrate 
-#![](picture/loratemptest.png)
-#### LoRa testing communications
-Open the two serial Monitor, one for LoRa_gateway and one for the LoRa_temo,restart both devices, then you can see them start communicating.
+* Set the baudrate as **38400**
+
+![](picture/gatetest.png)
+
+### LoRa end device
+
+* Open other Arduino IDE window
+* Open File --> Examples --> SX1272 --> Arduino_LoRa_temp
+* Upload code to Arduino
+
+![](picture/loratemp.png)
+
+* Open the Arduino IDE Serial Monitor
+* Set the baudrate as **38400**
+
+![](picture/loratemptest.png)
+
+### Check communication
+* Open the two serial Monitor, one for LoRa_gateway and one for LoRa end device
+* Restart both devices, then you can see them starting to communicate.
 
 ## Schematic
-#![](picture/sch.png)
+![](picture/sch.png)
